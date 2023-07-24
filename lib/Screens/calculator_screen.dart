@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../Widgets/bottom_button.dart';
 import '../Utilities/functionality_page.dart';
 import 'package:love_finder/Utilities/constants.dart';
-
 import 'love_result_screen.dart';
 
 class CalculatorScreen extends StatelessWidget {
@@ -94,6 +93,26 @@ class _TextInputState extends State<TextInput> {
                       title: const Text('Error!',
                       textAlign: TextAlign.center,),
                       content: const Text('Both fields must not be empty.'),
+                      actions: <Widget>[
+                        TextButton(
+                          onPressed: () => Navigator.pop(context, 'Cancel'),
+                          child: const Text('Cancel'),
+                        ),
+                        TextButton(
+                          onPressed: () => Navigator.pop(context, 'OK'),
+                          child: const Text('OK'),
+                        ),
+                      ]),
+                );
+              }
+              else if (firstController.text.isEmpty ||
+                  secondController.text.isEmpty) {
+                showDialog<String>(
+                  context: context,
+                  builder: (BuildContext context) => AlertDialog(
+                      title: const Text('Error!',
+                        textAlign: TextAlign.center,),
+                      content: const Text('Fill out required field.'),
                       actions: <Widget>[
                         TextButton(
                           onPressed: () => Navigator.pop(context, 'Cancel'),
